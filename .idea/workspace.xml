@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d20dc74c-f948-4b72-a320-02c16d9b43dc" name="Changes" comment="Лаба 2: Створення та ініціалізація проєкту фан-шопу ФК Стохід">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/catalog.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
+    <list default="true" id="d20dc74c-f948-4b72-a320-02c16d9b43dc" name="Changes" comment="Виконано лабу 3: налаштовано переходи між сторінками та передачу даних через контекст.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -102,7 +99,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1778793860459</updated>
-      <workItem from="1778793861463" duration="2284000" />
+      <workItem from="1778793861463" duration="3315000" />
     </task>
     <task id="LOCAL-00001" summary="Лаба 2: Створення та ініціалізація проєкту фан-шопу ФК Стохід">
       <option name="closed" value="true" />
@@ -112,7 +109,15 @@
       <option name="project" value="LOCAL" />
       <updated>1778794339543</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Виконано лабу 3: налаштовано переходи між сторінками та передачу даних через контекст.">
+      <option name="closed" value="true" />
+      <created>1778796200581</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1778796200581</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -120,6 +125,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Лаба 2: Створення та ініціалізація проєкту фан-шопу ФК Стохід" />
-    <option name="LAST_COMMIT_MESSAGE" value="Лаба 2: Створення та ініціалізація проєкту фан-шопу ФК Стохід" />
+    <MESSAGE value="Виконано лабу 3: налаштовано переходи між сторінками та передачу даних через контекст." />
+    <option name="LAST_COMMIT_MESSAGE" value="Виконано лабу 3: налаштовано переходи між сторінками та передачу даних через контекст." />
   </component>
 </project>
