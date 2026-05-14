@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+    <h1>{{ title }}</h1>
+    
+    <table style="border: 1px solid black; border-collapse: collapse; width: 300px;">
+        <tr style="background-color: #f2f2f2;">
+            <th style="border: 1px solid black; padding: 8px;">Назва товару</th>
+            <th style="border: 1px solid black; padding: 8px;">Ціна</th>
+        </tr>
+        {% for item in items %}
+        <tr>
+            <td style="border: 1px solid black; padding: 8px;">{{ item.name }}</td>
+            <td style="border: 1px solid black; padding: 8px;">{{ item.price }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <hr>
+    <p><a href="{% url 'home_url' %}">Повернутися на головну сторінку</a></p>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+    <h1>{{ title }}</h1>
+    <p>{{ description }}</p>
+
+    <h3>Чому обирають нас:</h3>
+    <ul>
+        {% for feature in features %}
+            <li>{{ feature }}</li>
+        {% endfor %}
+    </ul>
+
+    <hr>
+    <p><a href="{% url 'catalog_url' %}">Перейти до перегляду товарів</a></p>
+</body>
+</html>
