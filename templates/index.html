@@ -1,21 +1,22 @@
-<!DOCTYPE html>
-<html lang="uk">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ title }}</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
     <h1>{{ title }}</h1>
-    <p>{{ description }}</p>
+    <p>Ласкаво просимо до нашого магазину атрибутики!</p>
 
-    <h3>Чому обирають нас:</h3>
-    <ul>
-        {% for feature in features %}
-            <li>{{ feature }}</li>
+    <div class="product-grid">
+        {% for product in products %}
+        <div class="product-card">
+            <h3>{{ product.name }}</h3>
+            <p>Категорія: {{ product.category.name }}</p>
+            <p><strong>Ціна: {{ product.price }} грн</strong></p>
+            <p>{{ product.description|truncatewords:10 }}</p>
+            <a href="{% url 'catalog_url' %}" class="btn">Детальніше</a>
+        </div>
+        {% empty %}
+            <p>Товарів поки що немає в наявності.</p>
         {% endfor %}
-    </ul>
-
-    <hr>
-    <p><a href="{% url 'catalog_url' %}">Перейти до перегляду товарів</a></p>
-</body>
-</html>
+    </div>
+{% endblock %}

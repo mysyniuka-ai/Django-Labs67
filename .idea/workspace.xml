@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d20dc74c-f948-4b72-a320-02c16d9b43dc" name="Changes" comment="Виконано лабу 3: налаштовано переходи між сторінками та передачу даних через контекст.">
+    <list default="true" id="d20dc74c-f948-4b72-a320-02c16d9b43dc" name="Changes" comment="Виконано лабу 4: створено моделі Category, Product, Review та налаштовано адмінку">
+      <change afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shop/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/shop/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,7 +102,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1778793860459</updated>
-      <workItem from="1778793861463" duration="3315000" />
+      <workItem from="1778793861463" duration="4494000" />
     </task>
     <task id="LOCAL-00001" summary="Лаба 2: Створення та ініціалізація проєкту фан-шопу ФК Стохід">
       <option name="closed" value="true" />
@@ -117,7 +120,15 @@
       <option name="project" value="LOCAL" />
       <updated>1778796200581</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Виконано лабу 4: створено моделі Category, Product, Review та налаштовано адмінку">
+      <option name="closed" value="true" />
+      <created>1778797253919</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1778797253919</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -126,6 +137,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Лаба 2: Створення та ініціалізація проєкту фан-шопу ФК Стохід" />
     <MESSAGE value="Виконано лабу 3: налаштовано переходи між сторінками та передачу даних через контекст." />
-    <option name="LAST_COMMIT_MESSAGE" value="Виконано лабу 3: налаштовано переходи між сторінками та передачу даних через контекст." />
+    <MESSAGE value="Виконано лабу 4: створено моделі Category, Product, Review та налаштовано адмінку" />
+    <option name="LAST_COMMIT_MESSAGE" value="Виконано лабу 4: створено моделі Category, Product, Review та налаштовано адмінку" />
   </component>
 </project>

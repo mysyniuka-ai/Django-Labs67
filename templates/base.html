@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}ФК Стохід Shop{% endblock %}</title>
+    <style>
+        /* Основні стилі для всього сайту */
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 0; 
+            display: flex; 
+            flex-direction: column; 
+            min-height: 100vh; 
+            background-color: #f4f4f4;
+        }
+        header { background: #002d55; color: white; padding: 1rem; }
+        nav a { color: white; margin-right: 20px; text-decoration: none; font-weight: bold; }
+        .container { flex: 1; padding: 20px; max-width: 1200px; margin: auto; background: white; width: 100%; }
+        
+        /* Стилі для таблиць (замість застарілого border="1") */
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin-top: 20px; 
+        }
+        th, td { 
+            border: 1px solid #ddd; 
+            padding: 12px; 
+            text-align: left; 
+        }
+        th { background-color: #002d55; color: white; }
+
+        footer { background: #1a1a1a; color: #ccc; padding: 2rem; text-align: center; font-size: 14px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav>
+        <a href="{% url 'home_url' %}">Головна</a>
+        <a href="{% url 'catalog_url' %}">Каталог</a>
+        {% for cat in categories %}
+            <a href="#">{{ cat.name }}</a>
+        {% endfor %}
+    </nav>
+</header>
+
+<div class="container">
+    {% block content %}{% endblock %}
+</div>
+
+<footer>
+    <div>
+        <h3>ФК «СТОХІД» — Офіційний Фан-Шоп</h3>
+        <p>&copy; 2026 Всі права захищені. Мисинюк Артем.</p>
+        <p>Контакти: info@stohid.fc | +380 99 000 00 00</p>
+    </div>
+</footer>
+
+</body>
+</html>

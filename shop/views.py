@@ -1,22 +1,21 @@
 from django.shortcuts import render
+from .models import Category, Product
+
 
 def home(request):
-    # Дані, які ми передаємо на головну сторінку через контекст
+    # Отримуємо всі категорії та всі товари з бази даних
+    categories = Category.objects.all()
+    products = Product.objects.all()
+
     context = {
-        'title': 'Головна сторінка ФК Стохід',
-        'description': 'Вітаємо у офіційному фан-шопі нашого клубу!',
-        'features': ['Оригінальна форма', 'Швидка доставка', 'Знижки для фанатів']
+        'title': 'Офіційний магазин ФК Стохід',
+        'categories': categories,
+        'products': products,
     }
     return render(request, 'index.html', context)
 
+
 def catalog(request):
-    # Дані для сторінки каталогу
-    context = {
-        'title': 'Каталог товарів',
-        'items': [
-            {'name': 'Ігрова футболка', 'price': '1200 грн'},
-            {'name': 'Шарф вболівальника', 'price': '350 грн'},
-            {'name': 'Кепка з логотипом', 'price': '450 грн'}
-        ]
-    }
-    return render(request, 'catalog.html', context)
+    categories = Category.objects.all()
+    products = Product.objects.all()
+    return render(request, 'catalog.html', {'categories': categories, 'products': products})
