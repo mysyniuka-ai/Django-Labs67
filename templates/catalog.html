@@ -1,26 +1,55 @@
-<!DOCTYPE html>
-<html lang="uk">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ title }}</title>
-</head>
-<body>
-    <h1>{{ title }}</h1>
-    
-    <table style="border: 1px solid black; border-collapse: collapse; width: 300px;">
-        <tr style="background-color: #f2f2f2;">
-            <th style="border: 1px solid black; padding: 8px;">Назва товару</th>
-            <th style="border: 1px solid black; padding: 8px;">Ціна</th>
-        </tr>
-        {% for item in items %}
-        <tr>
-            <td style="border: 1px solid black; padding: 8px;">{{ item.name }}</td>
-            <td style="border: 1px solid black; padding: 8px;">{{ item.price }}</td>
-        </tr>
-        {% endfor %}
-    </table>
+{% extends 'base.html' %}
 
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="container" style="padding: 20px;">
+    <h1>{{ title }}</h1>
     <hr>
-    <p><a href="{% url 'home_url' %}">Повернутися на головну сторінку</a></p>
-</body>
-</html>
+
+    <div class="categories-menu" style="margin-bottom: 25px; background: #f1f1f1; padding: 10px; border-radius: 6px;">
+        <strong style="margin-right: 10px;">Категорії:</strong>
+        {% for cat in categories %}
+            <a href="{% url 'category_detail_url' cat.id %}" style="margin-right: 15px; color: #007bff; text-decoration: none; font-weight: 500;">{{ cat.name }}</a>
+        {% empty %}
+            <span style="color: #777;">Категорій немає</span>
+        {% endfor %}
+    </div>
+
+    <div class="product-grid" style="display: flex; gap: 20px; flex-wrap: wrap;">
+        {% for item in items %}
+            <div class="product-card" style="border: 1px solid #ddd; padding: 15px; border-radius: 8px; width: 220px; background: #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+                <div class="image-wrapper" style="height: 160px; display: flex; align-items: center; justify-content: center; background: #f9f9f9; border-radius: 4px; overflow: hidden; margin-bottom: 10px;">
+                    {% if item.image %}
+                        <img src="{{ item.image.url }}" alt="{{ item.name }}" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                    {% else %}
+                        <span style="color: #999; font-size: 14px;">Немає фото</span>
+                    {% endif %}
+                </div>
+
+                <h3 style="margin: 10px 0 5px 0; font-size: 18px;">{{ item.name }}</h3>
+                
+                <p style="font-size: 14px; color: #555; margin-bottom: 5px;">
+                    Категорія: 
+                    {% if item.category %}
+                        <a href="{% url 'category_detail_url' item.category.id %}" style="color: #007bff; text-decoration: none;">{{ item.category.name }}</a>
+                    {% else %}
+                        Без категорії
+                    {% endif %}
+                </p>
+
+                <p style="font-size: 16px; margin: 10px 0;">Ціна: <strong style="color: #e74c3c;">{{ item.price }} грн</strong></p>
+                
+                <a href="{% url 'product_detail_url' item.id %}" style="display: block; text-align: center; margin-bottom: 10px; color: #007bff; font-size: 14px; text-decoration: underline;">Детальніше</a>
+                
+                <button type="button" disabled style="background-color: #cccccc; color: #666666; border: none; padding: 8px 12px; width: 100%; cursor: not-allowed; border-radius: 4px; font-weight: bold;">Купити</button>
+            </div>
+        {% empty %}
+            <p>У каталозі поки немає товарів.</p>
+        {% endfor %}
+    </div>
+
+    <hr style="margin-top: 30px;">
+    <p><a href="{% url 'home_url' %}" style="color: #007bff; text-decoration: none;">← Повернутися на головну сторінку</a></p>
+</div>
+{% endblock %}
