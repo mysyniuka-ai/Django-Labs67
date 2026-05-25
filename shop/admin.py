@@ -1,21 +1,22 @@
 from django.contrib import admin
-from .models import Category, Product, Review
+from .models import Category, Product, Review, Subscription, Order
 
 @admin.register(Category)
-class CategoryAdmin(admin.ModelAdmin):  # ВИПРАВЛЕНО: було admin.admin.ModelAdmin
-    list_display = ('name', 'created_at', 'updated_at')
-    search_fields = ('name',)
-    ordering = ('-created_at',)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name')
 
 @admin.register(Product)
-class ProductAdmin(admin.ModelAdmin):  # ВИПРАВЛЕНО
-    list_display = ('name', 'category', 'price', 'created_at', 'updated_at')
-    list_filter = ('category', 'created_at')
-    search_fields = ('name', 'description')
-    ordering = ('-created_at',)
+class ProductAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name', 'category')
 
 @admin.register(Review)
-class ReviewAdmin(admin.ModelAdmin):  # ВИПРАВЛЕНО
-    list_display = ('author', 'product', 'created_at')
-    readonly_fields = ('created_at',)
-    ordering = ('-created_at',)
+class ReviewAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name', 'product', 'rating')
+
+@admin.register(Subscription)
+class SubscriptionAdmin(admin.ModelAdmin):
+    list_display = ('id', 'email')
+
+@admin.register(Order)
+class OrderAdmin(admin.ModelAdmin):
+    list_display = ('id', 'user', 'product_name', 'price', 'created_at')

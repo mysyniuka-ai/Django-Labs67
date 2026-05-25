@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title %}Вхід до кабінету{% endblock %}
+
+{% block content %}
+<div style="display: flex; justify-content: center; align-items: center; padding: 20px 0;">
+    <div style="background: white; border-radius: 12px; border-top: 5px solid var(--bordeaux); padding: 40px; width: 100%; max-width: 400px; box-shadow: 0 15px 35px rgba(0,0,0,0.05); text-align: center;">
+
+        <h2 style="margin: 0 0 10px 0; font-size: 24px; font-weight: 700; color: var(--dark);">Вхід до кабінету</h2>
+        <p style="color: var(--grey); font-size: 14px; margin: 0 0 30px 0;">Будь ласка, введіть свої дані для авторизації</p>
+
+        <form method="POST" style="text-align: left;">
+            {% csrf_token %}
+
+            {% if form.non_field_errors %}
+                <div style="background: #f8d7da; color: #721c24; padding: 10px; border-radius: 6px; margin-bottom: 20px; font-size: 14px;">
+                    {% for error in form.non_field_errors %}
+                        {{ error }}
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            {% for field in form %}
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; font-size: 14px; font-weight: 600; margin-bottom: 8px; color: var(--dark);">
+                        {{ field.label }}
+                    </label>
+                    <div class="form-input-wrapper">
+                        {{ field }}
+                    </div>
+                    {% if field.errors %}
+                        <span style="color: #e74c3c; font-size: 12px; margin-top: 5px; display: block;">{{ field.errors.0 }}</span>
+                    {% endif %}
+                </div>
+            {% endfor %}
+
+            <button type="submit" class="btn-custom btn-bordeaux" style="width: 100%; padding: 12px 0; text-transform: uppercase; letter-spacing: 1px; font-size: 14px; margin-top: 10px;">
+                Увійти
+            </button>
+        </form>
+
+        <div style="margin-top: 25px; border-top: 1px solid #eee; padding-top: 20px; font-size: 14px;">
+            <a href="{% url 'password_reset' %}" style="color: var(--bordeaux); text-decoration: none; display: block; margin-bottom: 10px;">Забули свій пароль?</a>
+            <span style="color: var(--grey);">Ще немає акаунту? <a href="{% url 'register_url' %}" style="color: var(--bordeaux); text-decoration: none; font-weight: 600;">Зареєструватися</a></span>
+        </div>
+    </div>
+</div>
+
+<style>
+    .form-input-wrapper input {
+        width: 100%;
+        height: 42px;
+        padding: 0 12px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        font-size: 14px;
+        box-sizing: border-box;
+        outline: none;
+        transition: all 0.3s;
+    }
+    .form-input-wrapper input:focus {
+        border-color: var(--bordeaux);
+        box-shadow: 0 0 0 3px rgba(109, 7, 26, 0.1);
+    }
+</style>
+{% endblock %}

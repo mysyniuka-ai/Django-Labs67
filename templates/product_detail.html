@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block content %}
+<div class="container" style="max-width: 900px; margin: 30px auto; padding: 0 15px;">
+    <div style="display: flex; gap: 40px; flex-wrap: wrap;">
+        <div style="flex: 1; min-width: 280px; max-width: 400px;">
+            {% if product.image %}
+                <img src="{{ product.image.url }}" alt="{{ product.name }}" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+            {% else %}
+                <div style="background: #eee; height: 300px; display: flex; align-items: center; justify-content: center; border-radius: 8px; color: #777;">Фото відсутнє</div>
+            {% endif %}
+        </div>
+
+        <div style="flex: 2; min-width: 300px;">
+            <h1>{{ product.name }}</h1>
+            <p style="color: gray;">Категорія: {{ product.category.name|default:"Без категорії" }}</p>
+
+            <div class="rating-badge" style="margin: 15px 0; font-size: 18px;">
+                Рейтинг товару:
+                {% if average_rating %}
+                    <strong style="color: #f39c12; background: #fef5e7; padding: 4px 10px; border-radius: 4px;">★ {{ average_rating }} / 5.0</strong>
+                {% else %}
+                    <span style="color: #999; font-size: 15px;">Ще немає оцінок</span>
+                {% endif %}
+            </div>
+
+            <h2 style="color: #2c3e50; margin: 15px 0;">{{ product.price }} грн</h2>
+            <p>{{ product.description|default:"Опис відсутній." }}</p>
+
+            <button type="button" disabled style="background-color: #cccccc; color: #666666; border: none; padding: 12px 24px; font-size: 16px; cursor: not-allowed; border-radius: 4px; margin-top: 15px; font-weight: bold;">
+                Купити товар
+            </button>
+        </div>
+    </div>
+
+    <hr style="margin: 40px 0;">
+
+    <div style="display: flex; gap: 40px; flex-wrap: wrap;">
+        <div style="flex: 1; min-width: 280px;">
+            <h3>Відгуки покупців ({{ reviews.count }})</h3>
+            <div style="margin-top: 15px;">
+                {% for review in reviews %}
+                    <div style="background: #fdfdfd; border: 1px solid #eee; padding: 12px; margin-bottom: 10px; border-radius: 6px;">
+                        <strong>{{ review.name }}</strong>
+                        <span style="color: #f39c12; margin-left: 10px;">★ {{ review.rating }}</span>
+                        <p style="margin: 5px 0 0 0; color: #555; font-size: 15px;">{{ review.text }}</p>
+                    </div>
+                {% empty %}
+                    <p style="color: #888;">Будьте першим, хто оцінить цей товар!</p>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div style="flex: 1; min-width: 280px; background: #f9f9f9; padding: 20px; border-radius: 8px; border: 1px solid #eaeaea; height: fit-content;">
+            <h3>Залишити свою оцінку</h3>
+            <form method="POST" style="margin-top: 15px;">
+                {% csrf_token %}
+                <label>Ваше ім'я:</label>
+                {{ review_form.name }}
+
+                <label>Оцінка (від 1 до 5):</label>
+                {{ review_form.rating }}
+
+                <label>Коментар (необов'язково):</label>
+                {{ review_form.text }}
+
+                <button type="submit" style="background: #3498db; color: white; border: none; padding: 10px 20px; width: 100%; border-radius: 4px; cursor: pointer; font-weight: bold; margin-top: 5px;">Надіслати оцінку</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

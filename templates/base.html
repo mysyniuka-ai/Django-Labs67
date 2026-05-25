@@ -2,60 +2,186 @@
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}ФК Стохід Shop{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %} | Stohid Shop</title>
     <style>
-        /* Основні стилі для всього сайту */
-        body { 
-            font-family: Arial, sans-serif; 
-            margin: 0; 
-            display: flex; 
-            flex-direction: column; 
-            min-height: 100vh; 
-            background-color: #f4f4f4;
+        :root {
+            --bordeaux: #6D071A;
+            --cream: #FDFBFB;
+            --gold: #D4AF37;
+            --dark: #222222;
+            --grey: #7f8c8d;
         }
-        header { background: #002d55; color: white; padding: 1rem; }
-        nav a { color: white; margin-right: 20px; text-decoration: none; font-weight: bold; }
-        .container { flex: 1; padding: 20px; max-width: 1200px; margin: auto; background: white; width: 100%; }
-        
-        /* Стилі для таблиць (замість застарілого border="1") */
-        table { 
-            width: 100%; 
-            border-collapse: collapse; 
-            margin-top: 20px; 
-        }
-        th, td { 
-            border: 1px solid #ddd; 
-            padding: 12px; 
-            text-align: left; 
-        }
-        th { background-color: #002d55; color: white; }
 
-        footer { background: #1a1a1a; color: #ccc; padding: 2rem; text-align: center; font-size: 14px; margin-top: 20px; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--cream);
+            color: var(--dark);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Верхня панель навігації */
+        nav {
+            background-color: var(--bordeaux);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 4px solid var(--gold);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .logo a {
+            font-size: 22px;
+            color: white;
+            text-decoration: none;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .logo a span {
+            color: var(--gold);
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            margin-left: 25px;
+            font-size: 15px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .auth-links {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-welcome {
+            color: white;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .user-welcome strong {
+            color: var(--gold);
+        }
+
+        /* Компоненти преміальних кнопок */
+        .btn-custom {
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 18px;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            cursor: pointer;
+            border: none;
+            box-sizing: border-box;
+        }
+
+        .btn-bordeaux {
+            background-color: var(--bordeaux);
+            color: white;
+            border: 1px solid var(--gold);
+        }
+
+        .btn-bordeaux:hover {
+            background-color: #520412;
+            box-shadow: 0 4px 15px rgba(109, 7, 26, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .btn-gold {
+            background-color: var(--gold);
+            color: var(--bordeaux);
+            border: 1px solid var(--gold);
+        }
+
+        .btn-gold:hover {
+            background-color: #c29e2e;
+            transform: translateY(-1px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 1px solid white;
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: var(--bordeaux);
+        }
+
+        /* Контейнер основного вмісту сторінок */
+        .main-content {
+            padding: 40px 20px;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            flex: 1;
+        }
+
+        footer {
+            background-color: #1a1a1a;
+            color: #888;
+            text-align: center;
+            padding: 20px;
+            font-size: 13px;
+            margin-top: 60px;
+            border-top: 1px solid #333;
+        }
     </style>
 </head>
 <body>
 
-<header>
     <nav>
-        <a href="{% url 'home_url' %}">Головна</a>
-        <a href="{% url 'catalog_url' %}">Каталог</a>
-        {% for cat in categories %}
-            <a href="#">{{ cat.name }}</a>
-        {% endfor %}
+        <div class="logo">
+            <a href="{% url 'home_url' %}">STOHID<span>SHOP</span></a>
+        </div>
+
+        <div style="display: flex; align-items: center;">
+            <div class="nav-links" style="margin-right: 30px;">
+                <a href="{% url 'home_url' %}">Головна</a>
+                <a href="{% url 'catalog_url' %}">Каталог</a>
+            </div>
+
+            <div class="auth-links">
+                {% if user.is_authenticated %}
+                    <span class="user-welcome">Привіт, <strong>{{ user.username }}</strong>!</span>
+                    <a href="{% url 'profile_url' %}" class="btn-custom btn-gold">Особистий кабінет</a>
+                    <a href="{% url 'logout_url' %}" class="btn-custom btn-outline" style="border-color: rgba(255,255,255,0.3);">Вихід</a>
+                {% else %}
+                    <a href="{% url 'login_url' %}" class="btn-custom btn-outline">Вхід</a>
+                    <a href="{% url 'register_url' %}" class="btn-custom btn-gold">Реєстрація</a>
+                {% endif %}
+            </div>
+        </div>
     </nav>
-</header>
 
-<div class="container">
-    {% block content %}{% endblock %}
-</div>
-
-<footer>
-    <div>
-        <h3>ФК «СТОХІД» — Офіційний Фан-Шоп</h3>
-        <p>&copy; 2026 Всі права захищені. Мисинюк Артем.</p>
-        <p>Контакти: info@stohid.fc | +380 99 000 00 00</p>
+    <div class="main-content">
+        {% block content %}
+        {% endblock %}
     </div>
-</footer>
+
+    <footer>
+        &copy; 2026 STOHID SHOP. Всі права захищені. Bordeaux Edition.
+    </footer>
 
 </body>
 </html>

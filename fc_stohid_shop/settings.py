@@ -104,9 +104,10 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/6.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+# Переконайся, що в конфігурації увімкнено переклад і вказано українську мову:
+LANGUAGE_CODE = 'uk'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Kyiv'  # або твій поточний часовий пояс
 
 USE_I18N = True
 
@@ -117,3 +118,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+import os
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Вивід листів відновлення пароля в терміналі PyCharm
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# Куди перенаправляти користувача після логіну/логауту
+LOGIN_REDIRECT_URL = 'home_url'
+LOGOUT_REDIRECT_URL = 'home_url'
